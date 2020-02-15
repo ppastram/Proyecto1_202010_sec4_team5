@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
-
 import com.google.gson.Gson;
 
 import Infracciones.Example;
@@ -112,5 +111,72 @@ public class Modelo
                   actual.getClase_vehi() + ", " + actual.getTipo_servi() + ", " +  actual.getLocalidad();
 		
 		return mensaje;
+	}
+	
+	/**
+	 * Determina la sonaMiniMax para despues ser utilizado
+	 * @return Los limites teniendo en cuenta el rectangulo (la menor latitud, la menor longitud) y (la mayor latitud, la mayor longitud).
+	 */
+	public double[] darZonaMiniMax()
+	{
+		double[] rango = new double[4];
+		
+		double mayLa = 0;
+		double mayLo = datos1.seeObjetc(0).getCordenadas()[0];
+		double menLa = datos1.seeObjetc(0).getCordenadas()[1];
+		double menLo = 0;
+		
+		Iterator<Comparendo> it = datos1.iterator();
+		while(it.hasNext())
+		{
+			Comparendo elemento = it.next();
+			if(elemento.getCordenadas()[0] > mayLo)
+			{
+				mayLo = elemento.getCordenadas()[0];
+			}
+			else if(elemento.getCordenadas()[0] < menLo)
+			{
+				menLo = elemento.getCordenadas()[0];
+			}
+			
+			if(elemento.getCordenadas()[1] > mayLa)
+			{
+				mayLa = elemento.getCordenadas()[1];
+			}
+			else if(elemento.getCordenadas()[1] < menLa)
+			{
+				menLa = elemento.getCordenadas()[1];
+			}
+		}
+		
+		rango[0] = menLo;
+		rango[1] = mayLo;
+		rango[2] = menLa;
+		rango[3] = mayLa;
+		return rango;
+	}
+
+	/**
+	 * Retona una lista con los comparendos que se encuntran dentro de la ZonaMiniMax
+	 * @param pLongitudIn Longitud Inferior
+	 * @param pLatitudSu Latitud Superior
+	 * @param pLongitudSu Longitud Superior
+	 * @param pLatitudIn Latitud Inferior
+	 * @return Lista con los comparendos encontrados
+	 */
+	public LinkedList<Comparendo> darComparendosZonaMinimax(double pLongitudIn, double pLatitudSu, double pLongitudSu, double pLatitudIn)
+	{
+		LinkedList<Comparendo> nueva = new LinkedList<Comparendo>();
+		
+		Iterator<Comparendo> it = datos1.iterator();
+		while(it.hasNext())
+		{
+			Comparendo elemento = it.next();
+			if(elemento.getCordenadas()[0] >= pLongitudIn && elemento.getCordenadas()[1] <= pLatitudSu && elemento.getCordenadas()[0] <= pLongitudSu)
+			{
+				nueva.addNodeFirst(elemento);
+			}
+		}
+		return nueva;
 	}
 }
