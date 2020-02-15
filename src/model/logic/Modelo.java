@@ -1,72 +1,116 @@
 package model.logic;
 
-import model.data_structures.ArregloDinamico;
-import model.data_structures.IArregloDinamico;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+
+import com.google.gson.Gson;
+
+import Infracciones.Example;
+import model.data_structures.*;
 
 /**
  * Definicion del modelo del mundo
  *
  */
-public class Modelo {
+public class Modelo 
+{
 	/**
-	 * Atributos del modelo del mundo
+	 * Lista-pila de tipo Comparendos
 	 */
-	private IArregloDinamico datos;
-	
+	private LinkedList<Comparendo> datos1;
+
 	/**
-	 * Constructor del modelo del mundo con capacidad predefinida
+	 * Lista-cola de tipo Comparendos
+	 */
+	private LinkedQueue<Comparendo> datos2;
+
+	/**
+	 * Constructor del modelo del mundo
 	 */
 	public Modelo()
-	{
-		datos = new ArregloDinamico(7);
+	{	
+		Gson gson = new Gson();
+		BufferedReader br = null;
+		datos1 = new LinkedList<>();
+		datos2 = new LinkedQueue<>();
+
+		try
+		{
+			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018_small.geojson"));
+			Example result = gson.fromJson(br, Example.class);
+
+			for(int  i = 0; i < result.getFeatures().size(); i ++)
+			{
+				int objective = result.getFeatures().get(i).getProperties().getOBJECTID();
+				String fecha_hora = result.getFeatures().get(i).getProperties().getFECHAHORA();
+				String medio_dete = result.getFeatures().get(i).getProperties().getMEDIODETE();
+				String clase_vehi = result.getFeatures().get(i).getProperties().getCLASEVEHI();
+				String tipo_servi = result.getFeatures().get(i).getProperties().getTIPOSERVI();
+				String infraccion = result.getFeatures().get(i).getProperties().getINFRACCION();
+				String des_infrac = result.getFeatures().get(i).getProperties().getDESINFRAC();
+				String localidad = result.getFeatures().get(i).getProperties().getLOCALIDAD();
+				double cordenada1 = result.getFeatures().get(i).getGeometry().getCoordinates().get(0);
+				double cordenada2 = result.getFeatures().get(i).getGeometry().getCoordinates().get(1);
+
+				Comparendo actual = new Comparendo(objective, fecha_hora, medio_dete, clase_vehi, tipo_servi, infraccion, des_infrac, localidad, cordenada1, cordenada2);
+				datos1.addNodeFirst(actual);
+				datos2.enqueue(actual);
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		} 
+		finally
+		{
+			if(br != null)
+			{
+				try 
+				{
+					br.close();
+				} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		}
 	}
-	
+
 	/**
-	 * Constructor del modelo del mundo con capacidad dada
-	 * @param tamano
-	 */
-	public Modelo(int capacidad)
-	{
-		datos = new ArregloDinamico(capacidad);
-	}
-	
-	/**
-	 * Servicio de consulta de numero de elementos presentes en el modelo 
+	 * Servicio de consulta de numero de elementos presentes en el modelo de la pila
 	 * @return numero de elementos presentes en el modelo
 	 */
-	public int darTamano()
+	public int darTamanoComparendos()
 	{
-		return datos.darTamano();
-	}
-
-	/**
-	 * Requerimiento de agregar dato
-	 * @param dato
-	 */
-	public void agregar(String dato)
-	{	
-		datos.agregar(dato);
+		return datos1.getSize();
 	}
 	
 	/**
-	 * Requerimiento buscar dato
-	 * @param dato Dato a buscar
-	 * @return dato encontrado
+	 * Muestra la informacion con el mayor OBJECTID encontrado en la lista
+	 * @return El comparendo con maoyr objectid encontrado
 	 */
-	public String buscar(String dato)
+	public String darObjectidMayor()
 	{
-		return datos.buscar(dato);
+		String mensaje = " ";
+		Comparendo actual = datos1.seeObjetc(0);
+		
+		Iterator<Comparendo> it = datos1.iterator();
+		while(it.hasNext())
+		{
+			Comparendo elemento = it.next();
+			if(elemento.getObjective() > actual.getObjective())
+			{
+				actual = elemento;
+			}
+		}
+		
+		mensaje = actual.getObjective() + ", " + actual.getFecha_hora() + ", " + actual.getInfraccion() + ", " + 
+                  actual.getClase_vehi() + ", " + actual.getTipo_servi() + ", " +  actual.getLocalidad();
+		
+		return mensaje;
 	}
-	
-	/**
-	 * Requerimiento eliminar dato
-	 * @param dato Dato a eliminar
-	 * @return dato eliminado
-	 */
-	public String eliminar(String dato)
-	{
-		return datos.eliminar(dato);
-	}
-
-
 }
