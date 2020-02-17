@@ -1,6 +1,6 @@
-<mxfile host="www.draw.io" modified="2020-02-17T19:39:55.151Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15" etag="bzGqUE_040LuA-TMIsiC" version="12.7.0" type="github">
+<mxfile host="www.draw.io" modified="2020-02-17T20:15:47.336Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15" etag="VZfmaXW2exSEYLA6eBQ0" version="12.7.0" type="github">
   <diagram id="OgD3OtjzdBlAJdrimNEG" name="Page-1">
-    <mxGraphModel dx="1351" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="946" dy="569" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
@@ -125,17 +125,6 @@
         <mxCell id="CPRBnCA5laABlLX16hOq-56" value="Infracciones" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="1" vertex="1">
           <mxGeometry x="110.66000000000001" y="578" width="100" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="CPRBnCA5laABlLX16hOq-57" value="" style="endArrow=open;endFill=1;endSize=12;html=1;exitX=-0.005;exitY=-0.018;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="CPRBnCA5laABlLX16hOq-52" edge="1">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="368.23" y="548" as="sourcePoint"/>
-            <mxPoint x="212.23" y="528" as="targetPoint"/>
-            <Array as="points">
-              <mxPoint x="330.66" y="998"/>
-              <mxPoint x="330.66" y="568"/>
-              <mxPoint x="210.66" y="568"/>
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="CPRBnCA5laABlLX16hOq-58" value="Comparendo&#xa;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="80.66000000000001" y="58" width="270" height="470" as="geometry"/>
         </mxCell>
@@ -213,10 +202,13 @@
         <mxCell id="gOGK81u7pjjwRW-FLy15-17" value="+ LisIterator1(LinkedList &lt;E&gt;)&#xa;+ hasNext(): boolean&#xa;+ next(): E&#xa;+ remove(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="gOGK81u7pjjwRW-FLy15-14">
           <mxGeometry y="34" width="170" height="76" as="geometry"/>
         </mxCell>
-        <mxCell id="gOGK81u7pjjwRW-FLy15-34" value="&lt;h1 style=&quot;white-space: normal ; margin: 0px ; padding: 0px ; line-height: 1.3 ; color: rgb(51 , 51 , 51)&quot;&gt;&lt;/h1&gt;&lt;span style=&quot;font-size: 16px ; white-space: normal ; color: rgb(51 , 51 , 51) ; font-family: , &amp;#34;blinkmacsystemfont&amp;#34; , &amp;#34;segoe ui&amp;#34; , &amp;#34;roboto&amp;#34; , , &amp;#34;ubuntu&amp;#34; , &amp;#34;cantarell&amp;#34; , &amp;#34;helvetica neue&amp;#34; , sans-serif&quot;&gt;~&lt;/span&gt;current" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;entryX=-0.007;entryY=0.361;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="gOGK81u7pjjwRW-FLy15-14" target="gOGK81u7pjjwRW-FLy15-13">
-          <mxGeometry x="-0.071" relative="1" as="geometry">
+        <mxCell id="gOGK81u7pjjwRW-FLy15-34" value="&lt;h1 style=&quot;white-space: normal ; margin: 0px ; padding: 0px ; line-height: 1.3 ; color: rgb(51 , 51 , 51)&quot;&gt;&lt;/h1&gt;&lt;span style=&quot;font-size: 16px ; white-space: normal ; color: rgb(51 , 51 , 51) ; font-family: , &amp;#34;blinkmacsystemfont&amp;#34; , &amp;#34;segoe ui&amp;#34; , &amp;#34;roboto&amp;#34; , , &amp;#34;ubuntu&amp;#34; , &amp;#34;cantarell&amp;#34; , &amp;#34;helvetica neue&amp;#34; , sans-serif&quot;&gt;~&lt;/span&gt;current" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;entryX=-0.007;entryY=0.193;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="gOGK81u7pjjwRW-FLy15-14" target="gOGK81u7pjjwRW-FLy15-13">
+          <mxGeometry x="-0.3203" relative="1" as="geometry">
             <mxPoint x="59.339999999999975" y="110" as="sourcePoint"/>
             <mxPoint x="219.33999999999997" y="110" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="59" y="219"/>
+            </Array>
             <mxPoint as="offset"/>
           </mxGeometry>
         </mxCell>
@@ -310,6 +302,13 @@
           <mxGeometry x="0.25" y="-40" relative="1" as="geometry">
             <mxPoint x="530" y="940" as="sourcePoint"/>
             <mxPoint x="530" y="782" as="targetPoint"/>
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gOGK81u7pjjwRW-FLy15-63" value="- item" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;entryX=0.998;entryY=0.477;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="CPRBnCA5laABlLX16hOq-61">
+          <mxGeometry x="0.4753" y="-20" relative="1" as="geometry">
+            <mxPoint x="503.15999999999997" y="370.30999999999995" as="sourcePoint"/>
+            <mxPoint x="333.15999999999997" y="370" as="targetPoint"/>
             <mxPoint as="offset"/>
           </mxGeometry>
         </mxCell>
