@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @author Julian Padilla y Pablo Pastrana
  * @param <E> Tipo Generico
  */
-public class LinkedList <E> implements ILinkedList <E>
+public class LinkedList <E extends Comparable<E>> implements ILinkedList <E>
 {
 	// Atributos
 

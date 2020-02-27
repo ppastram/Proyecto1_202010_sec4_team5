@@ -54,11 +54,18 @@ public class Controller {
 				while(resultado1.hasNext())
 				{
 					Comparendo elemento = resultado1.next();
-					view.printMessage(elemento.getInfraccion() + ", " + elemento.getObjective() + ", " + elemento.getFecha_hora() + ", " + elemento.getClase_vehi() + ", " + elemento.getTipo_servi() + ", " + elemento.getLocalidad() + " \n");
+					view.printMessage(elemento.getInfraccion() + ", " + elemento.getObjective() + ", " + elemento.getFecha_hora() + ", " + elemento.getClase_vehi() + ", " + elemento.getTipo_servi() + ", " + elemento.getLocalidad());
 				}
 				break;
 
 			case 4:
+				view.printMessage("Por favor ingresar la localidad para buscar el primer comparendo dado");
+				String entrada = lector.next();
+				view.printMessage("El primer comparendo en el archivo con la localidad de " + entrada + ":");
+				view.printMessage(modelo.darPrimerComparendoLocalidad(entrada) + "\n");
+				break;
+				
+			case 5:
 				view.printMessage("Hasta pronto"); 
 				lector.close();
 				fin = true;

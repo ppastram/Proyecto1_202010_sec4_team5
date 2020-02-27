@@ -1,10 +1,14 @@
 package model.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Clase de tipo comparendo el cual almacena todas sus caracteristicas y detalles
  * @author Julian Padilla - Pablo Pastrana
  */
-public class Comparendo 
+public class Comparendo implements Comparable<Comparendo>
 {
 	// Atributos
 	
@@ -245,5 +249,54 @@ public class Comparendo
 	public void setCordenadas(double[] cordenadas) 
 	{
 		this.cordenadas = cordenadas;
+	}
+
+	/**
+	 * Compara los comparendos por fecha_hora para determinar si es mayor, menor o igual. 
+	 * Si las fechas_horas son iguales se compara por el objectid
+	 */
+	@Override
+	public int compareTo(Comparendo pItem) 
+	{
+		int resultado = 0;
+		
+		try 
+		{	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			Date date1 = sdf.parse(this.getFecha_hora());
+			Date date2 = sdf.parse(pItem.fecha_hora);
+
+			
+			if(date1.after(date2))         // Compara la fecha si es menor
+			{
+				resultado  = 1;
+			}
+			else if(date1.equals(date2))   // Compara la fecha si es igual y revisa la otra condicion
+			{
+				if(this.getObjective() < pItem.getObjective())
+				{
+					resultado = -1;
+				}
+				else if(this.getObjective() == pItem.getObjective())
+				{
+					resultado = 0;
+				}
+				else if(this.getObjective() > pItem.getObjective())
+				{
+					resultado = 1;
+				}
+			}
+			else if(date1.before(date2))    // Compara la fecha si es mayor
+			{
+				resultado = -1;
+			}
+			
+		} 
+		catch (ParseException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 }

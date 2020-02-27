@@ -11,9 +11,10 @@ public class ListIterator1<E> implements Iterator<E>
     Node<E> current; 
       
     // initialize pointer to head of the list for iteration 
-    public ListIterator1(LinkedList<E> list) 
+    @SuppressWarnings("unchecked")
+	public ListIterator1(LinkedList<?> linkedList) 
     { 
-        current = list.getFirst(); 
+        current = (Node<E>) linkedList.getFirst(); 
     } 
       
     // returns false if next element does not exist 
