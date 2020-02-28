@@ -59,13 +59,20 @@ public class Controller {
 				break;
 
 			case 4:
-				view.printMessage("Por favor ingresar la localidad para buscar el primer comparendo dado");
-				String entrada = lector.next();
-				view.printMessage("El primer comparendo en el archivo con la localidad de " + entrada + ":");
-				view.printMessage(modelo.darPrimerComparendoLocalidad(entrada) + "\n");
+				view.printMessage("Por favor ingresar la localidad para ser buscada en el archivo");
+				String entrada1 = lector.next();
+				view.printMessage("El primer comparendo en el archivo con la localidad de " + entrada1 + ":");
+				view.printMessage(modelo.darPrimerComparendoLocalidad(entrada1) + "\n");
 				break;
 				
 			case 5:
+				view.printMessage("Por favor ingresar la infraccion para ser buscada en el archivo");
+				String entrada2 = lector.next();
+				view.printMessage("El primer comparendo en el archivo con la localidad de " + entrada2 + ":");
+				view.printMessage(modelo.darPrimerComparendoInfraccion(entrada2) + "\n");
+				break;
+				
+			case 6:
 				view.printMessage("Hasta pronto"); 
 				lector.close();
 				fin = true;

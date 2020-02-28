@@ -87,7 +87,7 @@ public class Modelo
 	{
 		return datos1.getSize();
 	}
-	
+
 	/**
 	 * Muestra la informacion con el mayor OBJECTID encontrado en la lista
 	 * @return El comparendo con maoyr objectid encontrado
@@ -96,7 +96,7 @@ public class Modelo
 	{
 		String mensaje = " ";
 		Comparendo actual = datos1.seeObjetc(0);
-		
+
 		Iterator<Comparendo> it = datos1.iterator();
 		while(it.hasNext())
 		{
@@ -106,13 +106,13 @@ public class Modelo
 				actual = elemento;
 			}
 		}
-		
+
 		mensaje = actual.getObjective() + ", " + actual.getFecha_hora() + ", " + actual.getInfraccion() + ", " + 
-                  actual.getClase_vehi() + ", " + actual.getTipo_servi() + ", " +  actual.getLocalidad();
-		
+				actual.getClase_vehi() + ", " + actual.getTipo_servi() + ", " +  actual.getLocalidad();
+
 		return mensaje;
 	}
-	
+
 	/**
 	 * Determina la sonaMiniMax para despues ser utilizado
 	 * @return Los limites teniendo en cuenta el rectangulo (la menor latitud, la menor longitud) y (la mayor latitud, la mayor longitud).
@@ -120,12 +120,12 @@ public class Modelo
 	public double[] darZonaMiniMax()
 	{
 		double[] rango = new double[4];
-		
+
 		double mayLa = 0;
 		double mayLo = datos1.seeObjetc(0).getCordenadas()[0];
 		double menLa = datos1.seeObjetc(0).getCordenadas()[1];
 		double menLo = 0;
-		
+
 		Iterator<Comparendo> it = datos1.iterator();
 		while(it.hasNext())
 		{
@@ -138,7 +138,7 @@ public class Modelo
 			{
 				menLo = elemento.getCordenadas()[0];
 			}
-			
+
 			if(elemento.getCordenadas()[1] > mayLa)
 			{
 				mayLa = elemento.getCordenadas()[1];
@@ -148,7 +148,7 @@ public class Modelo
 				menLa = elemento.getCordenadas()[1];
 			}
 		}
-		
+
 		rango[0] = menLo;
 		rango[1] = mayLo;
 		rango[2] = menLa;
@@ -167,7 +167,7 @@ public class Modelo
 	public LinkedList<Comparendo> darComparendosZonaMinimax(double pLongitudIn, double pLatitudSu, double pLongitudSu, double pLatitudIn)
 	{
 		LinkedList<Comparendo> nueva = new LinkedList<Comparendo>();
-		
+
 		Iterator<Comparendo> it = datos1.iterator();
 		while(it.hasNext())
 		{
@@ -179,7 +179,7 @@ public class Modelo
 		}
 		return nueva;
 	}
-	
+
 	/**
 	 * Crea un arreglo comparable de los comparendos para poder ser utilizado en los sorts
 	 * @return Arreglo Comparable<Comparendos>
@@ -201,7 +201,7 @@ public class Modelo
 
 		return nuevo;
 	}
-	
+
 	/**
 	 * Este metodo se encarga fusionar las partes de los subarreglos ordenados
 	 * @param a Arreglo comparable de tipo comparendo a intercambiar en el arreglo
@@ -242,7 +242,7 @@ public class Modelo
 		MergeSort(a, aux, mid + 1, hi);
 		merge(a, aux, lo, mid, hi);
 	}
-	
+
 	/**
 	 * Se encarga de determinar si el comparendo es menor
 	 * @param v Comparendo1 de tipo coparable bajo el criterio de comparcion por fecha_hora, objectid depende del caso
@@ -266,30 +266,64 @@ public class Modelo
 		MergeSort(a, aux, 0, a.length-1);
 	}
 
+	/**
+	 * Recibe una localidad dada por parametro y retorna el primer comparendo con esa localidad, si no encuntra manda un mensaje de error
+	 * @param pLocalidad Localidad donde se hizo el comparendo
+	 * @return Mensaje del comparendo con la informcaion basica si lo encontro, si no un mensaje diciendo que no lo encontro
+	 */
 	public String darPrimerComparendoLocalidad(String pLocalidad) 
 	{
 		String mensaje = "";
 		boolean encontrado = false;
-		
+
 		Comparable<Comparendo> copia_Comparendos [ ] = copiarComparendosArreglo();
 		Comparendo nuevo = null;
-		
+
 		for(int i = 0; i < copia_Comparendos.length && !encontrado; i++)
-        {
+		{
 			nuevo = (Comparendo) copia_Comparendos[i];
 			if(nuevo.getLocalidad().equals(pLocalidad))
 			{
-	        	mensaje = nuevo.getObjective() + ", " + nuevo.getFecha_hora() + ", " + nuevo.getInfraccion() + ", " + nuevo.getClase_vehi() + ", " + nuevo.getTipo_servi() + ", " + nuevo.getLocalidad();
+				mensaje = nuevo.getObjective() + ", " + nuevo.getFecha_hora() + ", " + nuevo.getInfraccion() + ", " + nuevo.getClase_vehi() + ", " + nuevo.getTipo_servi() + ", " + nuevo.getLocalidad();
 				encontrado = true;
 			}
-        }
-		
+		}
+
 		if(!encontrado)
 		{
 			mensaje = "No se encontro en el archivo un comparendo con esta localidad.";
 		}
 		return mensaje;
 	}
-	
-	
+
+	/**
+	 * Recibe una localidad dada por parametro y retorna el primer comparendo con esa infraccion, si no encuentra manda un mensaje de error
+	 * @param pInfracion Infraccion del comparendo
+	 * @return Mensaje del comparendo con la informcaion basica si lo encontro, si no un mensaje diciendo que no lo encontro
+	 */
+	public String darPrimerComparendoInfraccion(String pInfracion) 
+	{
+		String mensaje = "";
+		boolean encontrado = false;
+
+		Comparable<Comparendo> copia_Comparendos [ ] = copiarComparendosArreglo();
+		Comparendo nuevo = null;
+
+		for(int i = 0; i < copia_Comparendos.length && !encontrado; i++)
+		{
+			nuevo = (Comparendo) copia_Comparendos[i];
+			if(nuevo.getInfraccion().equals(pInfracion))
+			{
+				mensaje = nuevo.getObjective() + ", " + nuevo.getFecha_hora() + ", " + nuevo.getInfraccion() + ", " + nuevo.getClase_vehi() + ", " + nuevo.getTipo_servi() + ", " + nuevo.getLocalidad();
+				encontrado = true;
+			}
+		}
+
+		if(!encontrado)
+		{
+			mensaje = "No se encontro en el archivo un comparendo con esa infraccion.";
+		}
+		return mensaje;
+	}
+
 }
