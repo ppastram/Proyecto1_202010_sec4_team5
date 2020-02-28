@@ -59,8 +59,12 @@ public class Controller {
 				break;
 
 			case 4:
-				view.printMessage("Por favor ingresar la localidad para ser buscada en el archivo");
+				view.printMessage("Por favor ingresar la localidad para ser buscada en el archivo (En caso de ser Barrios Unidos ingresar BARRIOS)");
 				String entrada1 = lector.next();
+				if(entrada1.startsWith("BARRIOS"))
+				{
+					entrada1 = "BARRIOS UNIDOS";
+				}
 				view.printMessage("El primer comparendo en el archivo con la localidad de " + entrada1 + ":");
 				view.printMessage(modelo.darPrimerComparendoLocalidad(entrada1) + "\n");
 				break;
