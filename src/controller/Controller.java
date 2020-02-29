@@ -33,6 +33,7 @@ public class Controller {
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
 
+		
 		while( !fin )
 		{
 			view.printMenu();
