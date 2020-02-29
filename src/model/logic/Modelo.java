@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Iterator;
+
 import com.google.gson.Gson;
 
 import Infracciones.Example;
@@ -38,7 +40,7 @@ public class Modelo
 
 		try
 		{
-			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018_small.geojson"));
+			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018.geojson"));
 			Example result = gson.fromJson(br, Example.class);
 
 			for(int  i = 0; i < result.getFeatures().size(); i ++)
@@ -200,71 +202,7 @@ public class Modelo
 		}
 
 		return nuevo;
-	}
-
-	/**
-	 * Este metodo se encarga fusionar las partes de los subarreglos ordenados
-	 * @param a Arreglo comparable de tipo comparendo a intercambiar en el arreglo
-	 * @param aux Arreglo auxiliar  de tipo comparendo 
-	 * @param lo Indice de la posicion inicial
-	 * @param mid Indice de la posición de la mitad del arreglo
-	 * @param hi Indice de la posicion final
-	 */
-	private static void merge(Comparable<Comparendo>[] a, Comparable<Comparendo>[] aux, int lo, int mid, int hi) 
-	{
-		// copy to aux[]
-		for (int k = lo; k <= hi; k++) {
-			aux[k] = a[k]; 
-		}
-
-		// merge back to a[]
-		int i = lo, j = mid+1;
-		for (int k = lo; k <= hi; k++) {
-			if      (i > mid)              a[k] = aux[j++];
-			else if (j > hi)               a[k] = aux[i++];
-			else if (less(aux[j], aux[i])) a[k] = aux[j++];
-			else                           a[k] = aux[i++];
-		}
-	}
-
-	/**
-	 * Este metodo se encarga de ordenar bajo el criterio de mergeSort
-	 * @param a Arreglo comparable de tipo comparendo 
-	 * @param aux Arreglo auxiliar  de tipo comparendo
-	 * @param lo Indice de la posicion inicial
-	 * @param hi Indice de la posicion final
-	 */
-	public static void MergeSort(Comparable<Comparendo>[] a, Comparable<Comparendo>[] aux, int lo, int hi)
-	{
-		if (hi <= lo) return;
-		int mid = lo + (hi - lo) / 2;
-		MergeSort(a, aux, lo, mid);
-		MergeSort(a, aux, mid + 1, hi);
-		merge(a, aux, lo, mid, hi);
-	}
-
-	/**
-	 * Se encarga de determinar si el comparendo es menor
-	 * @param v Comparendo1 de tipo coparable bajo el criterio de comparcion por fecha_hora, objectid depende del caso
-	 * @param w Comparendo2 de tipo coparable bajo el criterio de comparcion por fecha_hora, objectid depende del caso
-	 * @return True si es menor, false en el caso contrario
-	 */
-	private static boolean less(Comparable<Comparendo> v, Comparable<Comparendo> w) 
-	{
-		return v.compareTo((Comparendo) w) < 0;
-	}
-
-	/**
-	 * Reorganiza la matriz en orden ascendente, usando el orden natural.
-	 * @param a La matriz a ser ordenada
-	 */
-	@SuppressWarnings("unchecked")
-	public static void sort(Comparable<Comparendo>[] a) 
-	{
-		@SuppressWarnings("rawtypes")
-		Comparable[] aux = new Comparable[a.length];
-		MergeSort(a, aux, 0, a.length-1);
-	}
+	}	
 
 	/**
 	 * Recibe una localidad dada por parametro y retorna el primer comparendo con esa localidad, si no encuntra manda un mensaje de error
@@ -326,4 +264,78 @@ public class Modelo
 		return mensaje;
 	}
 
+	public Comparable<Comparendo>[] darComparendosRegistradosFecha(String pFecha)
+	{
+		@SuppressWarnings("unchecked")
+		Comparable<Comparendo>[] nuevo = (Comparable<Comparendo>[]) new Comparable[datos1.getSize()];
+
+		int j = 0;
+		Iterator<Comparendo> it = datos1.iterator();
+		while(it.hasNext())
+		{
+			for(int i = 0; i < datos1.getSize(); i++)
+			{
+				Comparendo elementoActual = it.next();
+				if(elementoActual.getFecha_hora().equals(pFecha)) 
+				{
+					nuevo[j] = new Comparendo(elementoActual.getObjective(), elementoActual.getFecha_hora(), elementoActual.getMedio_dete(), elementoActual.getClase_vehi(), elementoActual.getTipo_servi(), elementoActual.getInfraccion(), elementoActual.getDes_infrac(), elementoActual.getLocalidad(), elementoActual.getCordenadas()[0], elementoActual.getCordenadas()[1]);
+					j++;
+				}
+			}
+		}
+
+		return nuevo;
+	}
+
+	public static <E> void sort(E[] a, Comparator<? super E> comp) {
+		mergeSort(a, 0, a.length - 1, comp);
+	}
+
+
+	private static <E> void mergeSort(E[] a, int from, int to, Comparator<? super E> comp) {
+		if (from == to)
+			return;
+		int mid = (from + to) / 2;
+		// Sort the first and the second half
+		mergeSort(a, from, mid, comp);
+		mergeSort(a, mid + 1, to, comp);
+		merge(a, from, mid, to, comp);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static <E> void merge(E[] a, int from, int mid, int to, Comparator<? super E> comp) {
+		int n = to - from + 1;
+		Object[] values = new Object[n];
+
+		int fromValue = from;
+
+		int middleValue = mid + 1;
+
+		int index = 0;
+
+		while (fromValue <= mid && middleValue <= to) {
+			if (comp.compare(a[fromValue], a[middleValue]) < 0) {
+				values[index] = a[fromValue];
+				fromValue++;
+			} else {
+				values[index] = a[middleValue];
+				middleValue++;
+			}
+			index++;
+		}
+
+		while (fromValue <= mid) {
+			values[index] = a[fromValue];
+			fromValue++;
+			index++;
+		}
+		while (middleValue <= to) {
+			values[index] = a[middleValue];
+			middleValue++;
+			index++;
+		}
+
+		for (index = 0; index < n; index++)
+			a[from + index] = (E) values[index];
+	}
 }
