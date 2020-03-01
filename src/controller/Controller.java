@@ -105,22 +105,106 @@ public class Controller {
 						nuevo[i] = nuevo2;
 					}
 				}
-			
+
 				Comparator<Comparendo> comp = new ComparadorInfraccion();
 				Modelo.sort(nuevo, comp);
-				
-				view.printMessage("Estos son los comparendos con la fecha ingresa, estan oredenados de mayor a menor por infraccion \n");
+
+				view.printMessage("Estos son los comparendos con la fecha ingresada, estan oredenados de mayor a menor por infraccion \n");
 
 				for(int i = 0; i < nuevo.length; i++)
-                {
-					Comparendo nuevo4 = nuevo[i];
-                	System.out.println(nuevo4.getObjective() + ", " + nuevo4.getFecha_hora() + ", " + nuevo4.getInfraccion() + ", " + nuevo4.getClase_vehi() + ", " + nuevo4.getTipo_servi() + ", " + nuevo4.getLocalidad());
-                }
-				
+				{
+					Comparendo nuevo3 = nuevo[i];
+					System.out.println(nuevo3.getObjective() + ", " + nuevo3.getFecha_hora() + ", " + nuevo3.getInfraccion() + ", " + nuevo3.getClase_vehi() + ", " + nuevo3.getTipo_servi() + ", " + nuevo3.getLocalidad());
+				}
+
 				view.printMessage("El total de comparendos es de: " + j);
 				break;
 
 			case 7:
+				view.printMessage("Por favor ingresar la infraccion a realizar la consulta en la base de datos");
+				String entrada4 = lector.next();
+				Comparable<Comparendo> copia_Comparendos1 [ ] = modelo.darComparendosRegistradosInfraccion(entrada4);
+
+				int k =0;
+				Comparendo nuevo4 = null;
+				for(int i = 0; i < copia_Comparendos1.length ; i++)
+				{
+					nuevo4 = (Comparendo) copia_Comparendos1[i];
+					if(nuevo4 != null)
+					{
+						k++;
+					}
+				}
+
+				Comparendo[] nuevoI = new Comparendo[k];
+
+				Comparendo nuevo5 = null;
+				for(int i = 0; i < copia_Comparendos1.length ; i++)
+				{
+					nuevo5 = (Comparendo) copia_Comparendos1[i];
+					if(nuevo5 != null)
+					{
+						nuevoI[i] = nuevo5;
+					}
+				}
+
+				Comparator<Comparendo> compI = new ComparadorInfraccion();
+				Modelo.sort(nuevoI, compI);
+
+				// For para invertir la lista para que los objetos queden de menor a mayor
+
+				Comparendo temporal; 
+				int longitudDeArreglo = nuevoI.length;
+
+				for (int x = 0; x < longitudDeArreglo / 2; x++) 
+				{
+					temporal = nuevoI[x];
+					int indiceContrario = longitudDeArreglo - x - 1;
+					nuevoI[x] = nuevoI[indiceContrario];
+					nuevoI[indiceContrario] = temporal;
+				}
+
+				// Imprime los comparendos organizados por fecha de menor a mayor dada la infraccion que recibio
+
+				view.printMessage("Estos son los comparendos con la infraccion ingresada, estan oredenados de menor a mayor por fecha \n");
+
+				for(int i = 0; i < nuevoI.length; i++)
+				{
+					Comparendo nuevo6 = nuevoI[i];
+					System.out.println(nuevo6.getObjective() + ", " + nuevo6.getFecha_hora() + ", " + nuevo6.getInfraccion() + ", " + nuevo6.getClase_vehi() + ", " + nuevo6.getTipo_servi() + ", " + nuevo6.getLocalidad());
+				}
+
+				view.printMessage("El total de comparendos es de: " + k);
+				break;
+
+			case 8:
+				view.printMessage("Por favor ingresar las fehas para mostrar");
+				view.printMessage("Fecha 1:");
+				String entrada5 = lector.next();
+				view.printMessage("Fecha 2:");
+				String entrada6 = lector.next();
+				String[] fecha1 = modelo.darComparendosFecha1(entrada5);
+				String[] fecha2 = modelo.darComparendosFecha2(entrada6);
+
+				view.printMessage("Infraccion   | " + entrada5 + " | " + entrada6);
+				for(int i = 0; i < fecha1.length; i++)
+				{
+					view.printMessage(fecha1[i]+fecha2[i]);
+				}
+				break;
+
+			case 9:
+				String[] particular = modelo.darNumerosComparendosTipoServicioParticular();
+				String[] publico = modelo.darNumerosComparendosTipoServicioPublico();
+
+				view.printMessage("Infraccion   | Particular | Publico");
+				for(int i = 0; i < particular.length; i++)
+				{
+					view.printMessage(particular[i]+publico[i]);
+				}
+				break;
+
+			case 10:
 				view.printMessage("Hasta pronto"); 
 				lector.close();
 				fin = true;
