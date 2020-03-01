@@ -40,7 +40,7 @@ public class Modelo
 
 		try
 		{
-			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018_small.geojson"));
+			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018.geojson"));
 			Example result = gson.fromJson(br, Example.class);
 
 			for(int  i = 0; i < result.getFeatures().size(); i ++)
