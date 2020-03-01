@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import model.logic.ComparadorInfraccion;
+import model.logic.ComparadorInfraccionInverso;
 import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
@@ -178,7 +179,7 @@ public class Controller {
 				break;
 
 			case 8:
-				view.printMessage("Por favor ingresar las fehas para mostrar");
+				view.printMessage("Por favor ingresar las fehas para mostrar la informacion");
 				view.printMessage("Fecha 1:");
 				String entrada5 = lector.next();
 				view.printMessage("Fecha 2:");
@@ -205,6 +206,57 @@ public class Controller {
 				break;
 
 			case 10:
+				view.printMessage("Por favor ingresar una localidad, fecha de inicio y fecha final para mostrar los comparendos");
+				view.printMessage("Localidad: ");
+				String entrada7 = lector.next();
+				view.printMessage("Fecha de inicio: ");
+				String entrada8 = lector.next();
+				view.printMessage("Fecha de fin: ");
+				String entrada9 = lector.next();
+
+				view.printMessage("Comparación de comparendos en " + entrada7 + " del "+ entrada8 + " al " + entrada9);
+				Comparable<Comparendo> comparadorLF[] = modelo.darComparendos1C(entrada7, entrada8, entrada9);
+
+				int v =0;
+				Comparendo ok1 = null;
+				for(int i = 0; i < comparadorLF.length ; i++)
+				{
+					ok1 = (Comparendo) comparadorLF[i];
+					if(ok1 != null)
+					{
+						v++;
+					}
+				}
+
+				Comparendo[] nuevoLF = new Comparendo[v];
+
+				Comparendo actual1 = null;
+				for(int i = 0; i < comparadorLF.length ; i++)
+				{
+					actual1 = (Comparendo) comparadorLF[i];
+					if(actual1 != null)
+					{
+						nuevoLF[i] = actual1;
+					}
+				}
+
+				Comparator<Comparendo> compOK = new ComparadorInfraccionInverso();
+				Modelo.sort(nuevoLF, compOK);
+				
+				for(int i = 0; i < nuevoLF.length ; i++)
+				{
+					System.out.println(nuevoLF[i].getInfraccion()+nuevoLF[i].getLocalidad());
+				}
+				
+				break;
+
+			case 11:
+				break;
+
+			case 12:
+				break;
+
+			case 13:
 				view.printMessage("Hasta pronto"); 
 				lector.close();
 				fin = true;
