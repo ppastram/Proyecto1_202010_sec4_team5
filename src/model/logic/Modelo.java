@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -40,7 +41,7 @@ public class Modelo
 
 		try
 		{
-			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018.geojson"));
+			br = new BufferedReader(new FileReader("./data/comparendos_dei_2018_small.geojson"));
 			Example result = gson.fromJson(br, Example.class);
 
 			for(int  i = 0; i < result.getFeatures().size(); i ++)
@@ -1371,10 +1372,10 @@ public class Modelo
 	
 		return infraciones;
 	}
-
+	
 	/**
 	 * Retorna un arreglo comparable de los comparendos que tienen la Fecha 2
-	 * @return Arrgelo Comparable de comparendos con las Fecha2
+	 * @return Arreglo Comparable de comparendos con las Fecha2
 	 */
 	public String[] darComparendosFecha2(String pFecha2)
 	{
@@ -1811,4 +1812,1625 @@ public class Modelo
 		for (index = 0; index < n; index++)
 			a[from + index] = (E) values[index];
 	}
+	
+	
+	/**
+	 * Retorna una gráfica ASCII (Histograma) que muestre el número total de comparendos por cada LOCALIDAD representados por un String de caracteres ‘*’
+	 * @return Arreglo de Strings con la información a devolver en cada renglón del histograma
+	 */
+	public String[] darNComparendos(int n, String fecha1, String fecha2)
+	{
+
+		Iterator<Comparendo> it = datos1.iterator();
+		ArrayList <Integer> respuestas = new ArrayList <Integer>();
+		int nums[] = new int[127];
+
+		for(int i = 0; i < datos1.getSize() ; i++)
+		{
+			Comparendo actual = it.next();
+			if(actual != null)
+			{
+				// Infracciones A
+
+				if(actual.getInfraccion().startsWith("A01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[0] ++;
+				if(actual.getInfraccion().startsWith("A02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[1] ++;
+				if(actual.getInfraccion().startsWith("A03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[2] ++;
+				if(actual.getInfraccion().startsWith("A04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[3] ++;
+				if(actual.getInfraccion().startsWith("A05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[4] ++;
+				if(actual.getInfraccion().startsWith("A06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[5] ++;
+				if(actual.getInfraccion().startsWith("A07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[6] ++;
+				if(actual.getInfraccion().startsWith("A08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[7] ++;
+				if(actual.getInfraccion().startsWith("A09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[8] ++;
+				if(actual.getInfraccion().startsWith("A10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[9] ++;
+				if(actual.getInfraccion().startsWith("A11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[10] ++;
+				if(actual.getInfraccion().startsWith("A12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[11] ++;
+
+				// Infraciones B
+
+				if(actual.getInfraccion().startsWith("B01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[12] ++;
+				if(actual.getInfraccion().startsWith("B02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[13] ++;
+				if(actual.getInfraccion().startsWith("B03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[14] ++;
+				if(actual.getInfraccion().startsWith("B04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[15] ++;
+				if(actual.getInfraccion().startsWith("B05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[16] ++;
+				if(actual.getInfraccion().startsWith("B06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[17] ++;
+				if(actual.getInfraccion().startsWith("B07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[18]++;
+				if(actual.getInfraccion().startsWith("B08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 ) 
+					nums[19]++;
+				if(actual.getInfraccion().startsWith("B09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[20] ++;
+				if(actual.getInfraccion().startsWith("B10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[21] ++;
+				if(actual.getInfraccion().startsWith("B11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[22] ++;
+				if(actual.getInfraccion().startsWith("B12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[23] ++;
+				if(actual.getInfraccion().startsWith("B13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[24] ++;
+				if(actual.getInfraccion().startsWith("B14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[25] ++;
+				if(actual.getInfraccion().startsWith("B15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[26] ++;
+				if(actual.getInfraccion().startsWith("B16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[27] ++;
+				if(actual.getInfraccion().startsWith("B17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[28] ++;
+				if(actual.getInfraccion().startsWith("B18") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[29] ++;
+				if(actual.getInfraccion().startsWith("B19") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[30] ++;
+				if(actual.getInfraccion().startsWith("B20") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[31] ++;
+				if(actual.getInfraccion().startsWith("B21") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[32] ++;
+				if(actual.getInfraccion().startsWith("B22") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[33] ++;
+				if(actual.getInfraccion().startsWith("B23") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[34] ++;
+
+				// Infracciones C
+
+				if(actual.getInfraccion().startsWith("C01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[35] ++;
+				if(actual.getInfraccion().startsWith("C02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[36] ++;
+				if(actual.getInfraccion().startsWith("C03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[37] ++;
+				if(actual.getInfraccion().startsWith("C04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[38] ++;
+				if(actual.getInfraccion().startsWith("C05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[39] ++;
+				if(actual.getInfraccion().startsWith("C06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[40] ++;
+				if(actual.getInfraccion().startsWith("C07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[41] ++;
+				if(actual.getInfraccion().startsWith("C08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[42] ++;
+				if(actual.getInfraccion().startsWith("C09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[43] ++;
+				if(actual.getInfraccion().startsWith("C10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[44] ++;
+				if(actual.getInfraccion().startsWith("C11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[45] ++;
+				if(actual.getInfraccion().startsWith("C12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[46] ++;
+				if(actual.getInfraccion().startsWith("C13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[47] ++;
+				if(actual.getInfraccion().startsWith("C14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[48] ++;
+				if(actual.getInfraccion().startsWith("C15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[49] ++;
+				if(actual.getInfraccion().startsWith("C16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[50] ++;
+				if(actual.getInfraccion().startsWith("C17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[51] ++;
+				if(actual.getInfraccion().startsWith("C18") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[52] ++;
+				if(actual.getInfraccion().startsWith("C19") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[53] ++;
+				if(actual.getInfraccion().startsWith("C20") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[54] ++;
+				if(actual.getInfraccion().startsWith("C21") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[55] ++;
+				if(actual.getInfraccion().startsWith("C22") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[56] ++;
+				if(actual.getInfraccion().startsWith("C23") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[57] ++;
+				if(actual.getInfraccion().startsWith("C24") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[58] ++;
+				if(actual.getInfraccion().startsWith("C25") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[59] ++;
+				if(actual.getInfraccion().startsWith("C26") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[60] ++;
+				if(actual.getInfraccion().startsWith("C27") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[61] ++;
+				if(actual.getInfraccion().startsWith("C28") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[62] ++;
+				if(actual.getInfraccion().startsWith("C29") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[63] ++;
+				if(actual.getInfraccion().startsWith("C30") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[64] ++;
+				if(actual.getInfraccion().startsWith("C31") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[65] ++;
+				if(actual.getInfraccion().startsWith("C32") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[66] ++;
+				if(actual.getInfraccion().startsWith("C33") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[67] ++;
+				if(actual.getInfraccion().startsWith("C34") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[68] ++;
+				if(actual.getInfraccion().startsWith("C35") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[69] ++;
+				if(actual.getInfraccion().startsWith("C36") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[70] ++;
+				if(actual.getInfraccion().startsWith("C37") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[71] ++;
+				if(actual.getInfraccion().startsWith("C38") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[72] ++;
+				if(actual.getInfraccion().startsWith("C39") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[73] ++;
+				if(actual.getInfraccion().startsWith("C40") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[74] ++;
+
+				// Infraciones D
+
+				if(actual.getInfraccion().startsWith("D01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[75] ++;
+				if(actual.getInfraccion().startsWith("D02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[76] ++;
+				if(actual.getInfraccion().startsWith("D03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[77] ++;
+				if(actual.getInfraccion().startsWith("D04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[78] ++;
+				if(actual.getInfraccion().startsWith("D05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[79] ++;
+				if(actual.getInfraccion().startsWith("D06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[80] ++;
+				if(actual.getInfraccion().startsWith("D07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[81] ++;
+				if(actual.getInfraccion().startsWith("D08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[82] ++;
+				if(actual.getInfraccion().startsWith("D09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[83] ++;
+				if(actual.getInfraccion().startsWith("D10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )     
+					nums[84] ++;
+				if(actual.getInfraccion().startsWith("D11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[85] ++;
+				if(actual.getInfraccion().startsWith("D12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[86] ++;
+				if(actual.getInfraccion().startsWith("D13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[87] ++;
+				if(actual.getInfraccion().startsWith("D14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[88] ++;
+				if(actual.getInfraccion().startsWith("D15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[89] ++;
+				if(actual.getInfraccion().startsWith("D16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[90] ++;
+				if(actual.getInfraccion().startsWith("D17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[91] ++;
+
+				// Infraciones D
+
+				if(actual.getInfraccion().startsWith("E02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[92] ++;
+				if(actual.getInfraccion().startsWith("E04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[93] ++;
+
+				// Infracciones F
+
+				if(actual.getInfraccion().startsWith("F01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[94] ++;
+				if(actual.getInfraccion().startsWith("F02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[95] ++;
+				if(actual.getInfraccion().startsWith("F03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[96] ++;
+				if(actual.getInfraccion().startsWith("F04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[97] ++;
+				if(actual.getInfraccion().startsWith("F05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[98] ++;
+				if(actual.getInfraccion().startsWith("F06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[99] ++;
+				if(actual.getInfraccion().startsWith("F07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[100] ++;
+				if(actual.getInfraccion().startsWith("F08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[101] ++;
+				if(actual.getInfraccion().startsWith("F09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[102] ++;
+				if(actual.getInfraccion().startsWith("F10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )    
+					nums[103] ++;
+				if(actual.getInfraccion().startsWith("F11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[104] ++;
+				if(actual.getInfraccion().startsWith("F12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[105] ++;
+
+				// Infraciones G
+
+				if(actual.getInfraccion().startsWith("G01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[106] ++;
+
+				// Infraciones H
+
+				if(actual.getInfraccion().startsWith("H01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[107] ++;
+				if(actual.getInfraccion().startsWith("H02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[108] ++;
+				if(actual.getInfraccion().startsWith("H03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[109] ++;
+				if(actual.getInfraccion().startsWith("H04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[110] ++;
+				if(actual.getInfraccion().startsWith("H05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[111] ++;
+				if(actual.getInfraccion().startsWith("H06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[112] ++;
+				if(actual.getInfraccion().startsWith("H07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[113] ++;
+				if(actual.getInfraccion().startsWith("H08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[114] ++;
+				if(actual.getInfraccion().startsWith("H09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[115] ++;
+				if(actual.getInfraccion().startsWith("H10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[116] ++;
+				if(actual.getInfraccion().startsWith("H11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[117] ++;
+				if(actual.getInfraccion().startsWith("H12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[118] ++;
+				if(actual.getInfraccion().startsWith("H13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[119] ++;
+
+				// Infracciones I
+
+				if(actual.getInfraccion().startsWith("I01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[120] ++;
+				if(actual.getInfraccion().startsWith("I02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 )
+					nums[121] ++;
+			}
+		}
+			
+		
+		for (int i = 0; i < n; i++)
+		{
+			respuestas.add(0);
+		}
+		
+		for(int i = 0; i < 121; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (nums[i] > respuestas.get(j))
+				{
+					respuestas.add(j, nums[i]);
+					break;
+				}
+			}
+		}
+		
+	
+		//System.out.println(nums[66]);
+
+		String[] total = new String[n];
+		//System.out.println("n=" + n);
+		
+		//System.out.println(nums[48]);
+
+		for (int i = 0; i < n; i++)
+		{
+			//System.out.println(respuestas.get(i) + " , " + nums[48]);
+			
+			if (respuestas.get(i) == nums[0])
+			{
+				total[i] = "A01" + respuestas.get(i);
+				nums[0] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[1])
+			{
+				total[i] = "A02" + respuestas.get(i);
+				nums[1] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[2])
+			{
+				total[i] = "A03" + respuestas.get(i);
+				nums[2] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[3])
+			{
+				total[i] = "A04" + respuestas.get(i);
+				nums[3] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[4])
+			{
+				total[i] = "A05" + respuestas.get(i);
+				nums[4] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[5])
+			{
+				total[i] = "A06" + respuestas.get(i);
+				nums[5] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[6])
+			{
+				total[i] = "A07" + respuestas.get(i);
+				nums[6] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[7])
+			{
+				total[i] = "A08" + respuestas.get(i);
+				nums[7] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[8])
+			{
+				total[i] = "A09" + respuestas.get(i);
+				nums[8] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[9])
+			{
+				total[i] = "A10" + respuestas.get(i);
+				nums[9] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[10])
+			{
+				total[i] = "A11" + respuestas.get(i);
+				nums[10] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[11])
+			{
+				total[i] = "A12" + respuestas.get(i);
+				nums[11] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[12])
+			{
+				total[i] = "B01" + respuestas.get(i);
+				nums[12] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[13])
+			{
+				total[i] = "B02" + respuestas.get(i);
+				nums[13] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[14])
+			{
+				total[i] = "B03" + respuestas.get(i);
+				nums[14] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[15])
+			{
+				total[i] = "B04" + respuestas.get(i);
+				nums[15] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[16])
+			{
+				total[i] = "B05" + respuestas.get(i);
+				nums[16] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[17])
+			{
+				total[i] = "B06" + respuestas.get(i);
+				nums[17] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[18])
+			{
+				total[i] = "B07" + respuestas.get(i);
+				nums[18] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[19])
+			{
+				total[i] = "B08" + respuestas.get(i);
+				nums[19] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[20])
+			{
+				total[i] = "B09" + respuestas.get(i);
+				nums[20] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[21])
+			{
+				total[i] = "B10" + respuestas.get(i);
+				nums[21] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[22])
+			{
+				total[i] = "B11" + respuestas.get(i);
+				nums[22] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[23])
+			{
+				total[i] = "B12" + respuestas.get(i);
+				nums[23] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[24])
+			{
+				total[i] = "B13" + respuestas.get(i);
+				nums[24] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[25])
+			{
+				total[i] = "B14" + respuestas.get(i);
+				nums[25] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[26])
+			{
+				total[i] = "B15" + respuestas.get(i);
+				nums[26] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[27])
+			{
+				total[i] = "B16" + respuestas.get(i);
+				nums[27] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[28])
+			{
+				total[i] = "B17" + respuestas.get(i);
+				nums[28] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[29])
+			{
+				total[i] = "B18" + respuestas.get(i);
+				nums[29] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[30])
+			{
+				total[i] = "B19" + respuestas.get(i);
+				nums[30] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[31])
+			{
+				total[i] = "B20" + respuestas.get(i);
+				nums[31] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[32])
+			{
+				total[i] = "B21" + respuestas.get(i);
+				nums[32] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[33])
+			{
+				total[i] = "B22" + respuestas.get(i);
+				nums[33] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[34])
+			{
+				total[i] = "B23" + respuestas.get(i);
+				nums[34] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[35])
+			{
+				total[i] = "C01" + respuestas.get(i);
+				nums[35] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[36])
+			{
+				total[i] = "C02" + respuestas.get(i);
+				nums[36] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[37])
+			{
+				total[i] = "C03" + respuestas.get(i);
+				nums[37] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[38])
+			{
+				total[i] = "C04" + respuestas.get(i);
+				nums[38] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[39])
+			{
+				total[i] = "C05" + respuestas.get(i);
+				nums[39] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[40])
+			{
+				total[i] = "C06" + respuestas.get(i);
+				nums[40] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[41])
+			{
+				total[i] = "C07" + respuestas.get(i);
+				nums[41] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[42])
+			{
+				total[i] = "C08" + respuestas.get(i);
+				nums[42] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[43])
+			{
+				total[i] = "C09" + respuestas.get(i);
+				nums[43] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[44])
+			{
+				total[i] = "C10" + respuestas.get(i);
+				nums[44] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[45])
+			{
+				total[i] = "C11" + respuestas.get(i);
+				nums[45] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[46])
+			{
+				total[i] = "C12" + respuestas.get(i);
+				nums[46] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[47])
+			{
+				total[i] = "C13" + respuestas.get(i);
+				nums[47] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[48])
+			{
+				total[i] = "C14" + respuestas.get(i);
+				nums[48] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[49])
+			{
+				total[i] = "C15" + respuestas.get(i);
+				nums[49] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[50])
+			{
+				total[i] = "C16" + respuestas.get(i);
+				nums[50] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[51])
+			{
+				total[i] = "C17" + respuestas.get(i);
+				nums[51] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[52])
+			{
+				total[i] = "C18" + respuestas.get(i);
+				nums[52] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[53])
+			{
+				total[i] = "C19" + respuestas.get(i);
+				nums[53] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[54])
+			{
+				total[i] = "C20" + respuestas.get(i);
+				nums[54] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[55])
+			{
+				total[i] = "C21" + respuestas.get(i);
+				nums[55] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[56])
+			{
+				total[i] = "C22" + respuestas.get(i);
+				nums[56] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[57])
+			{
+				total[i] = "C23" + respuestas.get(i);
+				nums[57] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[58])
+			{
+				total[i] = "C24" + respuestas.get(i);
+				nums[58] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[59])
+			{
+				total[i] = "C25" + respuestas.get(i);
+				nums[59] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[60])
+			{
+				total[i] = "C26" + respuestas.get(i);
+				nums[60] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[61])
+			{
+				total[i] = "C27" + respuestas.get(i);
+				nums[61] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[62])
+			{
+				total[i] = "C28" + respuestas.get(i);
+				nums[62] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[63])
+			{
+				total[i] = "C29" + respuestas.get(i);
+				nums[63] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[64])
+			{
+				total[i] = "C30" + respuestas.get(i);
+				nums[64] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[65])
+			{
+				total[i] = "C31" + respuestas.get(i);
+				nums[65] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[66])
+			{
+				total[i] = "C32" + respuestas.get(i);
+				nums[66] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[67])
+			{
+				total[i] = "C33" + respuestas.get(i);
+				nums[67] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[68])
+			{
+				total[i] = "C34" + respuestas.get(i);
+				nums[68] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[69])
+			{
+				total[i] = "C35" + respuestas.get(i);
+				nums[69] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[70])
+			{
+				total[i] = "C36" + respuestas.get(i);
+				nums[70] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[71])
+			{
+				total[i] = "C37" + respuestas.get(i);
+				nums[71] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[72])
+			{
+				total[i] = "C38" + respuestas.get(i);
+				nums[72] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[73])
+			{
+				total[i] = "C39" + respuestas.get(i);
+				nums[73] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[74])
+			{
+				total[i] = "C40" + respuestas.get(i);
+				nums[74] = -1;
+			}
+		
+			else if (respuestas.get(i) == nums[75])
+			{
+				total[i] = "D01" + respuestas.get(i);
+				nums[75] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[76])
+			{
+				total[i] = "D02" + respuestas.get(i);
+				nums[76] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[77])
+			{
+				total[i] = "D03" + respuestas.get(i);
+				nums[77] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[78])
+			{
+				total[i] = "D04" + respuestas.get(i);
+				nums[78] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[79])
+			{
+				total[i] = "D05" + respuestas.get(i);
+				nums[79] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[80])
+			{
+				total[i] = "D06" + respuestas.get(i);
+				nums[80] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[81])
+			{
+				total[i] = "D07" + respuestas.get(i);
+				nums[81] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[82])
+			{
+				total[i] = "D08" + respuestas.get(i);
+				nums[82] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[83])
+			{
+				total[i] = "D09" + respuestas.get(i);
+				nums[83] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[84])
+			{
+				total[i] = "D10" + respuestas.get(i);
+				nums[84] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[85])
+			{
+				total[i] = "D11" + respuestas.get(i);
+				nums[85] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[86])
+			{
+				total[i] = "D12" + respuestas.get(i);
+				nums[86] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[87])
+			{
+				total[i] = "D13" + respuestas.get(i);
+				nums[87] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[88])
+			{
+				total[i] = "D14" + respuestas.get(i);
+				nums[88] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[89])
+			{
+				total[i] = "D15" + respuestas.get(i);
+				nums[89] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[90])
+			{
+				total[i] = "D16" + respuestas.get(i);
+				nums[90] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[91])
+			{
+				total[i] = "D17" + respuestas.get(i);
+				nums[91] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[92])
+			{
+				total[i] = "E02" + respuestas.get(i);
+				nums[92] = -1;
+			}
+			
+			else 	if (respuestas.get(i) == nums[93])
+			{
+				total[i] = "E04" + respuestas.get(i);
+				nums[93] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[94])
+			{
+				total[i] = "F01" + respuestas.get(i);
+				nums[94] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[95])
+			{
+				total[i] = "F02" + respuestas.get(i);
+				nums[95] = -1;
+			}
+	
+			else if (respuestas.get(i) == nums[96])
+			{
+				total[i] = "F03" + respuestas.get(i);
+				nums[96] = -1;
+			}
+			
+			else if (respuestas.get(i)== nums[97])
+			{
+				total[i] = "F04" + respuestas.get(i);
+				nums[97] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[98])
+			{
+				total[i] = "F05" + respuestas.get(i);
+				nums[98] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[99])
+			{
+				total[i] = "F06" + respuestas.get(i);
+				nums[99] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[100])
+			{
+				total[i] = "F07" + respuestas.get(i);
+				nums[100] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[101])
+			{
+				total[i] = "F08" + respuestas.get(i);
+				nums[101] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[102])
+			{
+				total[i] = "F09" + respuestas.get(i);
+				nums[102] = -1;
+			}
+			
+			else if (respuestas.get(i)== nums[103])
+			{
+				total[i] = "F10" + respuestas.get(i);
+				nums[103] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[104])
+			{
+				total[i] = "F11" + respuestas.get(i);
+				nums[104] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[105])
+			{
+				total[i] = "F12" + respuestas.get(i);
+				nums[105] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[106])
+			{
+				total[i] = "G01" + respuestas.get(i);
+				nums[106] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[107])
+			{
+				total[i] = "H01" + respuestas.get(i);
+				nums[107] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[108])
+			{
+				total[i] = "H02" + respuestas.get(i);
+				nums[108] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[109])
+			{
+				total[i] = "H03" + respuestas.get(i);
+				nums[109] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[110])
+			{
+				total[i] = "H04" + respuestas.get(i);
+				nums[110] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[111])
+			{
+				total[i] = "H05" + respuestas.get(i);
+				nums[111] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[112])
+			{
+				total[i] = "H06" + respuestas.get(i);
+				nums[112] = -1;
+			}
+			
+			else if (respuestas.get(i)== nums[113])
+			{
+				total[i] = "H07" + respuestas.get(i);
+				nums[113] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[114])
+			{
+				total[i] = "H08" + respuestas.get(i);
+				nums[114] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[115])
+			{
+				total[i] = "H09" + respuestas.get(i);
+				nums[115] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[116])
+			{
+				total[i] = "H10" + respuestas.get(i);
+				nums[116] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[117])
+			{
+				total[i] = "H11" + respuestas.get(i);
+				nums[117] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[118])
+			{
+				total[i] = "H12" + respuestas.get(i);
+				nums[118] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[119])
+			{
+				total[i] = "H13" + respuestas.get(i);
+				nums[119] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[120])
+			{
+				total[i] = "I01" + respuestas.get(i);
+				nums[120] = -1;
+			}
+			
+			else if (respuestas.get(i) == nums[121])
+			{
+				total[i] = "I02" + respuestas.get(i);
+				nums[121] = -1;
+			}
+		}
+		
+		return total;
+	}
+
+	
+	
+	
+	/**
+	 * Retorna una gráfica ASCII (Histograma) que muestre el número total de comparendos por cada LOCALIDAD representados por un String de caracteres ‘*’
+	 * @return Arreglo de Strings con la información a devolver en cada renglón del histograma
+	 */
+	public String[] darHistograma()
+	{
+		int[] nums = contarInfracsXLocalidad();
+		String[] respuestas = new String[21];
+	
+		
+		for(int i = 0; i < 20; i++)
+		{
+			respuestas[i] = "";
+			//System.out.println(nums[i] );
+
+			while(nums[i] > 0)
+			{
+				respuestas[i] += "*";
+				nums[i] -= 50;
+			}
+			
+			 if (respuestas[i].equals("") )
+				 respuestas[i] = "sin comparendos";
+
+		}
+		
+		respuestas[20] = datos1.getSize() + "";
+		
+		return respuestas;
+		
+	}
+	
+	public int[] contarInfracsXLocalidad()
+	{
+		int[] nums = new int[21]; 
+
+		Iterator<Comparendo> it = datos1.iterator();
+		//while(it.hasNext())
+		//{
+			for(int i = 0; i < datos1.getSize(); i++)
+			{
+				Comparendo elementoActual = it.next();
+				
+				//System.out.println( elementoActual.getLocalidad() );
+				
+				if (elementoActual.getLocalidad().equals( "ANTONIO NARIÑO" ) )
+					nums[0]++;
+				
+				if (elementoActual.getLocalidad().equals( "BARRIOS UNIDOS" ) )
+					nums[1]++;		
+				
+				if (elementoActual.getLocalidad().equals( "BOSA" ) )
+					nums[2]++;	
+				
+				if (elementoActual.getLocalidad().equals( "CHAPINERO" ) )
+					nums[3]++;	
+				
+				if (elementoActual.getLocalidad().equals( "CIUDAD BOLIVAR" ) )
+					nums[4]++;	
+				
+				if (elementoActual.getLocalidad().equals( "ENGATIVA" ) )
+					nums[5]++;	
+				
+				if (elementoActual.getLocalidad().equals( "FONTIBON" ) )
+					nums[6]++;	
+				
+				if (elementoActual.getLocalidad().equals( "KENNEDY" ) )
+					nums[7]++;	
+				
+				if (elementoActual.getLocalidad().equals( "CANDELARIA" ) )
+					nums[8]++;	
+				
+				if (elementoActual.getLocalidad().equals( "MARTIRES" ) )
+					nums[9]++;	
+				
+				if (elementoActual.getLocalidad().equals( "PUENTE ARANDA" ) )
+					nums[10]++;	
+				
+				if (elementoActual.getLocalidad().equals( "RAFAEL URIBE" ) )
+					nums[11]++;	
+				
+				if (elementoActual.getLocalidad().equals( "SAN CRISTOBAL" ) )
+					nums[12]++;	
+				
+				if (elementoActual.getLocalidad().equals( "SANTA FE" ) )
+					nums[13]++;	
+				
+				if (elementoActual.getLocalidad().equals( "SUBA" ) )
+					nums[14]++;	
+				
+				if (elementoActual.getLocalidad().equals( "SUMAPAZ" ) )
+					nums[15]++;	
+				
+				if (elementoActual.getLocalidad().equals( "TEUSAQUILLO" ) )
+					nums[16]++;	
+				
+				if (elementoActual.getLocalidad().equals( "TUNJUELITO" ) )
+					nums[17]++;	
+				
+				if (elementoActual.getLocalidad().equals( "USAQUEN" ) )
+					nums[18]++;	
+				
+				if (elementoActual.getLocalidad().equals( "USME" ) )
+					nums[19]++;					
+		}
+			
+		return nums;
+
+	}
+	
+	
+	public String[] darComparendosPorLocalidadYFecha(String localidad, String fecha1, String fecha2)
+	{
+		
+		String[] respuestas = new String[122];
+
+		if (! (localidad.equals("ANTONIO NARIÑO") || localidad.equals("BARRIOS UNIDOS") ||localidad.equals("BOSA") ||localidad.equals("CHAPINERO") ||localidad.equals("CIUDAD BOLIVAR") ||localidad.equals("ENGATIVA") ||localidad.equals("FONTIBON") ||localidad.equals("KENNEDY") ||localidad.equals("CANDELARIA") ||localidad.equals("MARTIRES") ||localidad.equals("PUENTE ARANDA") ||localidad.equals("RAFAEL URIBE") ||localidad.equals("SAN CRISTOBAL") ||localidad.equals("SANTA FE") ||localidad.equals("SUBA") ||localidad.equals("SUMAPAZ") ||localidad.equals("TEUSAQUILLO") ||localidad.equals("TUNJUELITO") ||localidad.equals("USAQUEN") ||localidad.equals("USME") )  )
+			return respuestas;
+			
+		Iterator<Comparendo> it = datos1.iterator();
+		int nums[] = new int[127];
+
+		for(int i = 0; i < datos1.getSize() ; i++)
+		{
+			Comparendo actual = it.next();
+			if(actual != null)
+			{
+				// Infracciones A
+
+				if(actual.getInfraccion().startsWith("A01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[0] ++;
+				if(actual.getInfraccion().startsWith("A02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[1] ++;
+				if(actual.getInfraccion().startsWith("A03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[2] ++;
+				if(actual.getInfraccion().startsWith("A04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[3] ++;
+				if(actual.getInfraccion().startsWith("A05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[4] ++;
+				if(actual.getInfraccion().startsWith("A06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[5] ++;
+				if(actual.getInfraccion().startsWith("A07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[6] ++;
+				if(actual.getInfraccion().startsWith("A08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[7] ++;
+				if(actual.getInfraccion().startsWith("A09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[8] ++;
+				if(actual.getInfraccion().startsWith("A10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[9] ++;
+				if(actual.getInfraccion().startsWith("A11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[10] ++;
+				if(actual.getInfraccion().startsWith("A12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[11] ++;
+
+				// Infraciones B
+
+				if(actual.getInfraccion().startsWith("B01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[12] ++;
+				if(actual.getInfraccion().startsWith("B02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[13] ++;
+				if(actual.getInfraccion().startsWith("B03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[14] ++;
+				if(actual.getInfraccion().startsWith("B04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[15] ++;
+				if(actual.getInfraccion().startsWith("B05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[16] ++;
+				if(actual.getInfraccion().startsWith("B06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[17] ++;
+				if(actual.getInfraccion().startsWith("B07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[18]++;
+				if(actual.getInfraccion().startsWith("B08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) ) 
+					nums[19]++;
+				if(actual.getInfraccion().startsWith("B09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[20] ++;
+				if(actual.getInfraccion().startsWith("B10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[21] ++;
+				if(actual.getInfraccion().startsWith("B11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[22] ++;
+				if(actual.getInfraccion().startsWith("B12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[23] ++;
+				if(actual.getInfraccion().startsWith("B13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[24] ++;
+				if(actual.getInfraccion().startsWith("B14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[25] ++;
+				if(actual.getInfraccion().startsWith("B15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[26] ++;
+				if(actual.getInfraccion().startsWith("B16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[27] ++;
+				if(actual.getInfraccion().startsWith("B17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[28] ++;
+				if(actual.getInfraccion().startsWith("B18") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[29] ++;
+				if(actual.getInfraccion().startsWith("B19") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[30] ++;
+				if(actual.getInfraccion().startsWith("B20") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[31] ++;
+				if(actual.getInfraccion().startsWith("B21") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[32] ++;
+				if(actual.getInfraccion().startsWith("B22") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[33] ++;
+				if(actual.getInfraccion().startsWith("B23") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[34] ++;
+
+				// Infracciones C
+
+				if(actual.getInfraccion().startsWith("C01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[35] ++;
+				if(actual.getInfraccion().startsWith("C02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[36] ++;
+				if(actual.getInfraccion().startsWith("C03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[37] ++;
+				if(actual.getInfraccion().startsWith("C04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[38] ++;
+				if(actual.getInfraccion().startsWith("C05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[39] ++;
+				if(actual.getInfraccion().startsWith("C06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[40] ++;
+				if(actual.getInfraccion().startsWith("C07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[41] ++;
+				if(actual.getInfraccion().startsWith("C08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[42] ++;
+				if(actual.getInfraccion().startsWith("C09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[43] ++;
+				if(actual.getInfraccion().startsWith("C10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[44] ++;
+				if(actual.getInfraccion().startsWith("C11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[45] ++;
+				if(actual.getInfraccion().startsWith("C12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[46] ++;
+				if(actual.getInfraccion().startsWith("C13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[47] ++;
+				if(actual.getInfraccion().startsWith("C14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[48] ++;
+				if(actual.getInfraccion().startsWith("C15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[49] ++;
+				if(actual.getInfraccion().startsWith("C16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[50] ++;
+				if(actual.getInfraccion().startsWith("C17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[51] ++;
+				if(actual.getInfraccion().startsWith("C18") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[52] ++;
+				if(actual.getInfraccion().startsWith("C19") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[53] ++;
+				if(actual.getInfraccion().startsWith("C20") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[54] ++;
+				if(actual.getInfraccion().startsWith("C21") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[55] ++;
+				if(actual.getInfraccion().startsWith("C22") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[56] ++;
+				if(actual.getInfraccion().startsWith("C23") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[57] ++;
+				if(actual.getInfraccion().startsWith("C24") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[58] ++;
+				if(actual.getInfraccion().startsWith("C25") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[59] ++;
+				if(actual.getInfraccion().startsWith("C26") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[60] ++;
+				if(actual.getInfraccion().startsWith("C27") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[61] ++;
+				if(actual.getInfraccion().startsWith("C28") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[62] ++;
+				if(actual.getInfraccion().startsWith("C29") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[63] ++;
+				if(actual.getInfraccion().startsWith("C30") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[64] ++;
+				if(actual.getInfraccion().startsWith("C31") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[65] ++;
+				if(actual.getInfraccion().startsWith("C32") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[66] ++;
+				if(actual.getInfraccion().startsWith("C33") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[67] ++;
+				if(actual.getInfraccion().startsWith("C34") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[68] ++;
+				if(actual.getInfraccion().startsWith("C35") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[69] ++;
+				if(actual.getInfraccion().startsWith("C36") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[70] ++;
+				if(actual.getInfraccion().startsWith("C37") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[71] ++;
+				if(actual.getInfraccion().startsWith("C38") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[72] ++;
+				if(actual.getInfraccion().startsWith("C39") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[73] ++;
+				if(actual.getInfraccion().startsWith("C40") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[74] ++;
+
+				// Infraciones D
+
+				if(actual.getInfraccion().startsWith("D01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[75] ++;
+				if(actual.getInfraccion().startsWith("D02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[76] ++;
+				if(actual.getInfraccion().startsWith("D03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[77] ++;
+				if(actual.getInfraccion().startsWith("D04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[78] ++;
+				if(actual.getInfraccion().startsWith("D05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[79] ++;
+				if(actual.getInfraccion().startsWith("D06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[80] ++;
+				if(actual.getInfraccion().startsWith("D07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[81] ++;
+				if(actual.getInfraccion().startsWith("D08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[82] ++;
+				if(actual.getInfraccion().startsWith("D09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[83] ++;
+				if(actual.getInfraccion().startsWith("D10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )     
+					nums[84] ++;
+				if(actual.getInfraccion().startsWith("D11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[85] ++;
+				if(actual.getInfraccion().startsWith("D12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[86] ++;
+				if(actual.getInfraccion().startsWith("D13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[87] ++;
+				if(actual.getInfraccion().startsWith("D14") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[88] ++;
+				if(actual.getInfraccion().startsWith("D15") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[89] ++;
+				if(actual.getInfraccion().startsWith("D16") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[90] ++;
+				if(actual.getInfraccion().startsWith("D17") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[91] ++;
+
+				// Infraciones D
+
+				if(actual.getInfraccion().startsWith("E02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[92] ++;
+				if(actual.getInfraccion().startsWith("E04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[93] ++;
+
+				// Infracciones F
+
+				if(actual.getInfraccion().startsWith("F01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[94] ++;
+				if(actual.getInfraccion().startsWith("F02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[95] ++;
+				if(actual.getInfraccion().startsWith("F03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[96] ++;
+				if(actual.getInfraccion().startsWith("F04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[97] ++;
+				if(actual.getInfraccion().startsWith("F05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[98] ++;
+				if(actual.getInfraccion().startsWith("F06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[99] ++;
+				if(actual.getInfraccion().startsWith("F07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[100] ++;
+				if(actual.getInfraccion().startsWith("F08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[101] ++;
+				if(actual.getInfraccion().startsWith("F09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[102] ++;
+				if(actual.getInfraccion().startsWith("F10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )    
+					nums[103] ++;
+				if(actual.getInfraccion().startsWith("F11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[104] ++;
+				if(actual.getInfraccion().startsWith("F12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[105] ++;
+
+				// Infraciones G
+
+				if(actual.getInfraccion().startsWith("G01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[106] ++;
+
+				// Infraciones H
+
+				if(actual.getInfraccion().startsWith("H01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[107] ++;
+				if(actual.getInfraccion().startsWith("H02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[108] ++;
+				if(actual.getInfraccion().startsWith("H03") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[109] ++;
+				if(actual.getInfraccion().startsWith("H04") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[110] ++;
+				if(actual.getInfraccion().startsWith("H05") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[111] ++;
+				if(actual.getInfraccion().startsWith("H06") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[112] ++;
+				if(actual.getInfraccion().startsWith("H07") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[113] ++;
+				if(actual.getInfraccion().startsWith("H08") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[114] ++;
+				if(actual.getInfraccion().startsWith("H09") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[115] ++;
+				if(actual.getInfraccion().startsWith("H10") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[116] ++;
+				if(actual.getInfraccion().startsWith("H11") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[117] ++;
+				if(actual.getInfraccion().startsWith("H12") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[118] ++;
+				if(actual.getInfraccion().startsWith("H13") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[119] ++;
+
+				// Infracciones I
+
+				if(actual.getInfraccion().startsWith("I01") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[120] ++;
+				if(actual.getInfraccion().startsWith("I02") && compararFechas(actual.getFecha_hora(), fecha1) >= 0 && compararFechas(actual.getFecha_hora(), fecha2) <= 0 && actual.getLocalidad().equals(localidad) )
+					nums[121] ++;
+			}
+		}
+		
+		
+		respuestas[0] = "A01" + nums[0];
+		respuestas[1] = "A02" + nums[1];
+		respuestas[2] = "A03" + nums[2];
+		respuestas[3] = "A04" + nums[3];
+		respuestas[4] = "A05" + nums[4];
+		respuestas[5] = "A06" + nums[5];
+		respuestas[6] = "A07" + nums[6];
+		respuestas[7] = "A08" + nums[7];
+		respuestas[8] = "A09" + nums[8];
+		respuestas[9] = "A10" + nums[9];
+		respuestas[10] = "A11" + nums[10];
+		respuestas[11] = "A12" + nums[11];
+		respuestas[12] = "B01" + nums[12];
+		respuestas[13] = "B02" + nums[13];
+		respuestas[14] = "B03" + nums[14];
+		respuestas[15] = "B04" + nums[15];
+		respuestas[16] = "B05" + nums[16];
+		respuestas[17] = "B06" + nums[17];
+		respuestas[18] = "B07" + nums[18];
+		respuestas[19] = "B08" + nums[19];
+		respuestas[20] = "B09" + nums[20];
+		respuestas[21] = "B10" + nums[21];
+		respuestas[22] = "B11" + nums[22];
+		respuestas[23] = "B12" + nums[23];
+		respuestas[24] = "B13" + nums[24];
+		respuestas[25] = "B14" + nums[25];
+		respuestas[26] = "B15" + nums[26];
+		respuestas[27] = "B16" + nums[27];
+		respuestas[28] = "B17" + nums[28];
+		respuestas[29] = "B18" + nums[29];
+		respuestas[30] = "B19" + nums[30];
+		respuestas[31] = "B20" + nums[31];
+		respuestas[32] = "B21" + nums[32];
+		respuestas[33] = "B22" + nums[33];
+		respuestas[34] = "B23" + nums[34];
+		respuestas[35] = "C01" + nums[35];
+		respuestas[36] = "C02" + nums[36];
+		respuestas[37] = "C03" + nums[37];
+		respuestas[38] = "C04" + nums[38];
+		respuestas[39] = "C05" + nums[39];
+		respuestas[40] = "C06" + nums[40];
+		respuestas[41] = "C07" + nums[41];
+		respuestas[42] = "C08" + nums[42];
+		respuestas[43] = "C09" + nums[43];
+		respuestas[44] = "C10" + nums[44];
+		respuestas[45] = "C11" + nums[45];
+		respuestas[46] = "C12" + nums[46];
+		respuestas[47] = "C13" + nums[47];
+		respuestas[48] = "C14" + nums[48];
+		respuestas[49] = "C15" + nums[49];
+		respuestas[50] = "C16" + nums[50];
+		respuestas[51] = "C17" + nums[51];
+		respuestas[52] = "C18" + nums[52];
+		respuestas[53] = "C19" + nums[53];
+		respuestas[54] = "C20" + nums[54];
+		respuestas[55] = "C21" + nums[55];
+		respuestas[56] = "C22" + nums[56];
+		respuestas[57] = "C23" + nums[57];
+		respuestas[58] = "C24" + nums[58];
+		respuestas[59] = "C25" + nums[59];
+		respuestas[60] = "C26" + nums[60];
+		respuestas[61] = "C27" + nums[61];
+		respuestas[62] = "C28" + nums[62];
+		respuestas[63] = "C29" + nums[63];
+		respuestas[64] = "C30" + nums[64];
+		respuestas[65] = "C31" + nums[65];
+		respuestas[66] = "C32" + nums[66];
+		respuestas[67] = "C33" + nums[67];
+		respuestas[68] = "C34" + nums[68];
+		respuestas[69] = "C35" + nums[69];
+		respuestas[70] = "C36" + nums[70];
+		respuestas[71] = "C37" + nums[71];
+		respuestas[72] = "C38" + nums[72];
+		respuestas[73] = "C39" + nums[73];
+		respuestas[74] = "C40" + nums[74];
+		respuestas[75] = "D01" + nums[75];
+		respuestas[76] = "D02" + nums[76];
+		respuestas[77] = "D03" + nums[77];
+		respuestas[78] = "D04" + nums[78];
+		respuestas[79] = "D05" + nums[79];
+		respuestas[80] = "D06" + nums[80];
+		respuestas[81] = "D07" + nums[81];
+		respuestas[82] = "D08" + nums[82];
+		respuestas[83] = "D09" + nums[83];
+		respuestas[84] = "D10" + nums[84];
+		respuestas[85] = "D11" + nums[85];
+		respuestas[86] = "D12" + nums[86];
+		respuestas[87] = "D13" + nums[87];
+		respuestas[88] = "D14" + nums[88];
+		respuestas[89] = "D15" + nums[89];
+		respuestas[90] = "D16" + nums[90];
+		respuestas[91] = "D17" + nums[91];
+		respuestas[92] = "E02" + nums[92];
+		respuestas[93] = "E04" + nums[93];
+		respuestas[94] = "F01" + nums[94];
+		respuestas[95] = "F02" + nums[95];
+		respuestas[96] = "F03" + nums[96];
+		respuestas[97] = "F04" + nums[97];
+		respuestas[98] = "F05" + nums[98];
+		respuestas[99] = "F06" + nums[99];
+		respuestas[100] = "F07" + nums[100];
+		respuestas[101] = "F08" + nums[101];
+		respuestas[102] = "F09" + nums[102];
+		respuestas[103] = "F10" + nums[103];
+		respuestas[104] = "F11" + nums[104];
+		respuestas[105] = "F12" + nums[105];
+		respuestas[106] = "G01" + nums[106];
+		respuestas[107] = "H01" + nums[107];
+		respuestas[108] = "H02" + nums[108];
+		respuestas[109] = "H03" + nums[109];
+		respuestas[110] = "H04" + nums[110];
+		respuestas[111] = "H05" + nums[111];
+		respuestas[112] = "H06" + nums[112];
+		respuestas[113] = "H07" + nums[113];
+		respuestas[114] = "H08" + nums[114];
+		respuestas[115] = "H09" + nums[115];
+		respuestas[116] = "H10" + nums[116];
+		respuestas[117] = "H11" + nums[117];
+		respuestas[118] = "H12" + nums[118];
+		respuestas[119] = "H13" + nums[119];
+		respuestas[120] = "I01" + nums[120];
+		respuestas[121] = "I02" + nums[121];
+		
+		
+		return respuestas;
+		
+	}
+	
+	public int compararFechas(String f1, String f2)
+	{
+		int año1 = Integer.parseInt( f1.substring(0, 4) );
+		int año2 = Integer.parseInt( f2.substring(0, 4) );
+		int mes1 = Integer.parseInt( f1.substring(5, 7) );
+		int mes2 = Integer.parseInt( f2.substring(5, 7) );
+		int dia1 = Integer.parseInt( f1.substring(8, 10) );
+		int dia2 = Integer.parseInt( f2.substring(8, 10) );
+		
+		if (año1 > año2)
+			return 1;
+		
+		if (año1 < año2)
+			return -1;
+		
+		if (mes1 > mes2)
+			return 1;
+		
+		if (mes1 < mes2)
+			return -1;
+		
+		if (dia1 > dia2)
+			return 1;
+		
+		if (dia1 < dia2)
+			return -1;
+		
+		return 0;
+		
+	}
+	
+	
 }

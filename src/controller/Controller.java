@@ -1,12 +1,15 @@
 package controller;
 
 import java.util.Comparator;
+
 import java.util.Iterator;
 import java.util.Scanner;
 
+//import model.logic.Aproximación;
 import model.logic.ComparadorInfraccion;
 import model.logic.Comparendo;
 import model.logic.Modelo;
+//import model.logic.de;
 import view.View;
 
 public class Controller {
@@ -43,7 +46,7 @@ public class Controller {
 			switch(option){
 			case 1:
 				int tamanio = modelo.darTamanoComparendos();
-				view.printMessage("El total de comparendos es de: " + tamanio);
+				view.printMessage("El total de comparendos es de: " + tamanio + "\n");
 				break;
 
 			case 2:
@@ -79,6 +82,39 @@ public class Controller {
 				break;
 
 			case 6:
+				
+				view.printMessage("Por favor ingrese la localidad a consultar");
+				String localidad = lector.next();
+				
+				view.printMessage("Por favor ingresar las fechas del rango");
+				
+				
+				view.printMessage("Fecha inicial (en formato AAAA/MM/DD):");
+				String fecha10 = lector.next();
+				
+				view.printMessage("Fecha final (en formato AAAA/MM/DD):");
+				String fecha20 = lector.next();
+				
+				String[] respuestax = modelo.darComparendosPorLocalidadYFecha(localidad, fecha10, fecha20);
+				
+				view.printMessage("\nComparación de comparendos en " + localidad + " del "+ fecha10 + " al " + fecha20 );
+				view.printMessage("Infracción | # Comparendos");
+	
+
+				for (int i = 0; i < 122; i++)
+				{
+					view.printMessage( respuestax[i].substring(0, 3) + "        | " + respuestax[i].substring(3) );
+				}
+				
+				view.printMessage("\n");
+				
+				
+				
+				break;
+				
+			
+				
+			case 7:
 				view.printMessage("Por favor ingresar la fecha a realizar la consulta en la base de datos");
 				String entrada3 = lector.next();
 				Comparable<Comparendo> copia_Comparendos [ ] = modelo.darComparendosRegistradosFecha(entrada3);
@@ -120,7 +156,7 @@ public class Controller {
 				view.printMessage("El total de comparendos es de: " + j);
 				break;
 
-			case 7:
+			case 8:
 				view.printMessage("Por favor ingresar la infraccion a realizar la consulta en la base de datos");
 				String entrada4 = lector.next();
 				Comparable<Comparendo> copia_Comparendos1 [ ] = modelo.darComparendosRegistradosInfraccion(entrada4);
@@ -177,12 +213,41 @@ public class Controller {
 				view.printMessage("El total de comparendos es de: " + k);
 				break;
 
-			case 8:
-				view.printMessage("Por favor ingresar las fehas para mostrar");
-				view.printMessage("Fecha 1:");
+			case 9:
+				view.printMessage("Por favor ingresar el numero n de los primeros n códigos de infracción con más comparendos que desee ver");
+				int n = lector.nextInt();
+				
+				view.printMessage("Por favor ingresar las fechas del rango");
+				view.printMessage("Fecha inicial (en formato AAAA/MM/DD):");
+				String finicial = lector.next();
+				
+				view.printMessage("Fecha final (en formato AAAA/MM/DD):");
+				String ffinal = lector.next();
+				
+				String[] respuesta = modelo.darNComparendos(n, finicial, ffinal);
+				
+				view.printMessage("\nRanking de las " + n + " mayores infracciones del " + finicial + " al " + ffinal );
+				view.printMessage("Infracción | # Comparendos");
+				
+				//view.printMessage( respuesta.length + "");
+
+				for (int i = 0; i < n; i++)
+				{
+					//view.printMessage(respuesta[i]);
+					view.printMessage( respuesta[i].substring(0, 3) + "        | " + respuesta[i].substring(3) );
+				}
+				
+				view.printMessage("\n");
+				break;
+			
+			case 10:
+				view.printMessage("Por favor ingresar las fechas para mostrar");
+				view.printMessage("Fecha 1 (en formato AAAA/MM/DD):");
 				String entrada5 = lector.next();
-				view.printMessage("Fecha 2:");
+				
+				view.printMessage("Fecha 2 (en formato AAAA/MM/DD):");
 				String entrada6 = lector.next();
+				
 				String[] fecha1 = modelo.darComparendosFecha1(entrada5);
 				String[] fecha2 = modelo.darComparendosFecha2(entrada6);
 
@@ -193,7 +258,7 @@ public class Controller {
 				}
 				break;
 
-			case 9:
+			case 11:
 				String[] particular = modelo.darNumerosComparendosTipoServicioParticular();
 				String[] publico = modelo.darNumerosComparendosTipoServicioPublico();
 
@@ -204,7 +269,38 @@ public class Controller {
 				}
 				break;
 
-			case 10:
+			case 12:
+				
+				String[] respuestas = modelo.darHistograma();
+				
+				view.printMessage("\nAproximación del número de comparendos por localidad.\n");
+				
+				view.printMessage("Antonio Nariño--|" + respuestas[0]);
+				view.printMessage("Barrios Unidos--|" + respuestas[1]);
+				view.printMessage("Bosa------------|" + respuestas[2]);
+				view.printMessage("Chapinero-------|" + respuestas[3]);
+				view.printMessage("Ciudad Bolivar--|" + respuestas[4]);
+				view.printMessage("Engativa--------|" + respuestas[5]);
+				view.printMessage("Fontibon--------|" + respuestas[6]);
+				view.printMessage("Kennedy---------|" + respuestas[7]);
+				view.printMessage("La Candelaria---|" + respuestas[8]);
+				view.printMessage("Martires--------|" + respuestas[9]);
+				view.printMessage("Puente Aranda---|" + respuestas[10]);
+				view.printMessage("Rafael Uribe----|" + respuestas[11]);
+				view.printMessage("San Cristobal---|" + respuestas[12]);
+				view.printMessage("Santa Fe--------|" + respuestas[13]);
+				view.printMessage("Suba------------|" + respuestas[14]);
+				view.printMessage("Sumapaz---------|" + respuestas[15]);
+				view.printMessage("Teusaquillo-----|" + respuestas[16]);		
+				view.printMessage("Tunjuelito------|" + respuestas[17]);
+				view.printMessage("Usaquen---------|" + respuestas[18]);
+				view.printMessage("Usme------------|" + respuestas[19] + "\n");
+				
+				view.printMessage("Total comparendos: " + respuestas[20] + "\n");
+				break;
+				
+				
+			case 13:
 				view.printMessage("Hasta pronto"); 
 				lector.close();
 				fin = true;
