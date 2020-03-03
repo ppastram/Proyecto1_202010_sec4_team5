@@ -1736,6 +1736,31 @@ public class Modelo
 	
 		return infraciones;
 	}
+	
+	public Comparable<Comparendo>[] darComparendos1C(String pLocalidad, String pFecha1, String pFecha2)
+	{
+		@SuppressWarnings("unchecked")
+		Comparable<Comparendo>[] nuevo = (Comparable<Comparendo>[]) new Comparable[datos1.getSize()];
+
+		int j = 0;
+		Iterator<Comparendo> it = datos1.iterator();
+		while(it.hasNext())
+		{
+			for(int i = 0; i < datos1.getSize(); i++)
+			{
+				Comparendo elementoActual = it.next();
+				if(elementoActual.getLocalidad().equals(pLocalidad) ) 
+				{
+					if(elementoActual.getFecha_hora().compareTo(pFecha1) < 0 && elementoActual.getFecha_hora().compareTo(pFecha2) < 0)
+					{
+						nuevo[j] = new Comparendo(elementoActual.getObjective(), elementoActual.getFecha_hora(), elementoActual.getMedio_dete(), elementoActual.getClase_vehi(), elementoActual.getTipo_servi(), elementoActual.getInfraccion(), elementoActual.getDes_infrac(), elementoActual.getLocalidad(), elementoActual.getCordenadas()[0], elementoActual.getCordenadas()[1]);
+						j++;
+					}
+				}
+			}
+		}
+        return nuevo;
+	}
 
 	// Metodos de Ordenamientos - MergeSort
 
@@ -1813,6 +1838,7 @@ public class Modelo
 			a[from + index] = (E) values[index];
 	}
 	
+<<<<<<< HEAD
 	
 	/**
 	 * Retorna una gráfica ASCII (Histograma) que muestre el número total de comparendos por cada LOCALIDAD representados por un String de caracteres ‘*’
@@ -3433,4 +3459,54 @@ public class Modelo
 	}
 	
 	
+=======
+	/**
+	 * Este metodo se encarga de ordenar bajo el criterio de shellSort
+	 * Funcion principal: Shell sort es un algoritmo que primero clasifica los elementos muy separados entre sí y sucesivamente reduce el intervalo entre los elementos a clasificar.
+	 * @param a Comparendo de tipo compareble bajo el criterio de comparcion por fecha_hora, objectid depende del caso
+	 */
+	public static void shellSort(Comparable<Comparendo>[] a) 
+	{
+		int n = a.length;
+
+		int h = 1;
+		while (h < n/3) h = 3*h + 1; 
+
+		while (h >= 1) 
+		{
+			for (int i = h; i < n; i++) 
+			{
+				for (int j = i; j >= h && less(a[j], a[j-h]); j -= h) 
+				{
+					exch(a, j, j-h);
+				}
+			}
+			h /= 3;
+		}
+	}
+
+	/**
+	 * Se encarga de determinar si el comparendo es menor
+	 * @param v Comparendo1 de tipo coparable bajo el criterio de comparcion por fecha_hora, objectid depende del caso
+	 * @param w Comparendo2 de tipo coparable bajo el criterio de comparcion por fecha_hora, objectid depende del caso
+	 * @return True si es menor, false en el caso contrario
+	 */
+	private static boolean less(Comparable<Comparendo> v, Comparable<Comparendo> w) 
+	{
+		return v.compareTo((Comparendo) w) < 0;
+	}
+
+	/**
+	 * Cambia el objeto de una posicion a otra
+	 * @param a Objeto a intercambiar en el arreglo
+	 * @param i Posicion en i
+	 * @param j Posicion en j
+	 */
+	private static void exch(Object[] a, int i, int j) 
+	{
+		Object swap = a[i];
+		a[i] = a[j];
+		a[j] = swap;
+	}
+>>>>>>> f00c0575f9e3ca1071e8b4c1afd05c60d93b90f7
 }
